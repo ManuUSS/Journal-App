@@ -1,4 +1,4 @@
-import { signInWithGoogle } from "../../firebase/providers";
+import { commonRegisterEmailAndPassword, signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 
@@ -23,6 +23,16 @@ export const startGoogleSignIn = ( email, password ) => {
         delete result.ok;
         dispatch( login( result ) );
 
+    }
+
+}
+
+export const startCreatingUser = ({ email, password, displayName }) => {
+
+    return async ( dispatch ) => {
+        dispatch( checkingCredentials() );
+        const response = await commonRegisterEmailAndPassword({ email, password, displayName });
+        console.log( response );
     }
 
 }
