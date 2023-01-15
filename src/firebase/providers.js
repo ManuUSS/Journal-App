@@ -20,7 +20,7 @@ export const signInWithGoogle = async () => {
 
 
 
-    } catch (error) {
+    } catch ( error ) {
         
         const errorMessage = error.message;
 
