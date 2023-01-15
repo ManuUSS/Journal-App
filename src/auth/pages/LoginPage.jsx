@@ -44,6 +44,7 @@ export const LoginPage = () => {
                 fullWidth
                 value={ email }
                 onChange={ onInputChange }
+                required
               />
             </Grid>
             
@@ -58,6 +59,7 @@ export const LoginPage = () => {
                 fullWidth
                 value={ password }
                 onChange={ onInputChange }
+                required
               />
             </Grid>
 
