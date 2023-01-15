@@ -3,6 +3,7 @@ import { Button, Grid, Link, TextField, Typography } from "@mui/material";
 import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
+import { useState } from 'react';
 
 const formData =  {
   email: 'manuel@gmail.com',
@@ -17,7 +18,9 @@ const formValidations = {
 }
 
 export const RegisterPage = () => {
-  
+
+  const  [ formSubmitted, setFormSubmitted ] = useState( false );
+
   const { 
     formState, displayName, email, password, onInputChange,
     isFormValid, displayNameValid, emailValid, passwordValid,  
@@ -25,6 +28,7 @@ export const RegisterPage = () => {
 
   const onSubmit = ( event ) => {
     event.preventDefault();
+    setFormSubmitted( true );
   }
   
 
@@ -47,7 +51,8 @@ export const RegisterPage = () => {
                 name="displayName"
                 value={ displayName }
                 onChange={ onInputChange }
-                error={ !displayNameValid }
+                error={ !!displayNameValid && formSubmitted }
+                helperText={ formSubmitted ? displayNameValid : '' }
               />
             
             </Grid>
@@ -62,7 +67,8 @@ export const RegisterPage = () => {
                 name="email"
                 value={ email }
                 onChange={ onInputChange }
-                error={ !emailValid }
+                error={ !!emailValid && formSubmitted }
+                helperText={ formSubmitted ? emailValid : ''}
               />
             </Grid>
             
@@ -78,7 +84,8 @@ export const RegisterPage = () => {
                 name="password"
                 value={ password }
                 onChange={ onInputChange }
-                error={ !passwordValid }
+                error={ !!passwordValid && formSubmitted }
+                helperText={ formSubmitted ? passwordValid : '' }
               />
             </Grid>
 
