@@ -31,8 +31,9 @@ export const startCreatingUser = ({ email, password, displayName }) => {
 
     return async ( dispatch ) => {
         dispatch( checkingCredentials() );
-        const response = await commonRegisterEmailAndPassword({ email, password, displayName });
-        console.log( response );
+        const { ok, uid, photoURL, errorMessage } = await commonRegisterEmailAndPassword({ email, password, displayName });
+        if( !ok ) return dispatch( logout({ errorMessage }) );
+        dispatch( login({ uid, photoURL, email, displayName }) );
     }
 
 }
