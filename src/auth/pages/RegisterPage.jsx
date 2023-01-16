@@ -48,7 +48,10 @@ export const RegisterPage = () => {
       title='Crear cuenta'
     >
 
-    <form onSubmit={ onSubmit }>
+    <form 
+      className="animate__animated animate__fadeIn"
+      onSubmit={ onSubmit }
+    >
           <Grid container>
             
             <Grid item 

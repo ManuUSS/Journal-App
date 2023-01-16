@@ -2,17 +2,7 @@ import { commonRegisterEmailAndPassword, loginEmailAndPassword, logOutFirebase, 
 import { checkingCredentials, login, logout } from "./";
 
 
-export const checkingAuth = ( email, password ) => {
-
-    return async ( dispatch ) => {
-
-        dispatch( checkingCredentials() );
-
-    }
-
-}
-
-export const startGoogleSignIn = ( email, password ) => {
+export const startGoogleSignIn = ( ) => {
 
     return async ( dispatch ) => {
 
@@ -43,8 +33,8 @@ export const startLoginWithEmailAndPassword = ({ email, password }) => {
     return async ( dispatch ) => {
 
         dispatch( checkingCredentials() );
-        const { ok, displayName, uid, photoURL, errorMessage } = await loginEmailAndPassword({ email, password });
-        if( !ok ) return dispatch( logout({ errorMessage }) );
+        const { ok, displayName, uid, photoURL } = await loginEmailAndPassword({ email, password });
+        if( !ok ) return dispatch( logout({ errorMessage: 'Mensaje de error aquí' }) );
         dispatch( login({ displayName, uid, photoURL, email }) );
 
     }

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkingAuth, startGoogleSignIn, startLoginWithEmailAndPassword } from '../../store/auth';
+import { startGoogleSignIn, startLoginWithEmailAndPassword } from '../../store/auth';
 import { Link as LinkRouter } from 'react-router-dom';
 import { Google } from '@mui/icons-material';
 import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
@@ -31,7 +31,10 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout title='Login'>
-      <form onSubmit={ onSubmit }>
+      <form 
+        className="animate__animated animate__fadeIn" 
+        onSubmit={ onSubmit }
+      >
           <Grid container>
             
             <Grid item 
