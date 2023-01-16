@@ -1,4 +1,4 @@
-import { commonRegisterEmailAndPassword, signInWithGoogle } from "../../firebase/providers";
+import { commonRegisterEmailAndPassword, loginEmailAndPassword, signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 
@@ -34,6 +34,19 @@ export const startCreatingUser = ({ email, password, displayName }) => {
         const { ok, uid, photoURL, errorMessage } = await commonRegisterEmailAndPassword({ email, password, displayName });
         if( !ok ) return dispatch( logout({ errorMessage }) );
         dispatch( login({ uid, photoURL, email, displayName }) );
+    }
+
+}
+
+export const startLoginWithEmailAndPassword = ({ email, password }) => {
+
+    return async ( dispatch ) => {
+
+        dispatch( checkingCredentials() );
+        const { ok, displayName, uid, photoURL, errorMessage } = await loginEmailAndPassword({ email, password });
+        if( !ok ) return dispatch( logout({ errorMessage }) );
+        dispatch( login({ displayName, uid, photoURL, email }) );
+
     }
 
 }
