@@ -1,4 +1,4 @@
-import { commonRegisterEmailAndPassword, loginEmailAndPassword, signInWithGoogle } from "../../firebase/providers";
+import { commonRegisterEmailAndPassword, loginEmailAndPassword, logOutFirebase, signInWithGoogle } from "../../firebase/providers";
 import { checkingCredentials, login, logout } from "./";
 
 
@@ -49,4 +49,11 @@ export const startLoginWithEmailAndPassword = ({ email, password }) => {
 
     }
 
+}
+
+export const startLogOutFirebase = () => {
+    return async ( dispatch ) => {
+        await logOutFirebase();
+        dispatch( logout() );
+    }
 }
