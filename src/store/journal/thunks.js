@@ -1,14 +1,21 @@
 import { collection, doc, setDoc } from 'firebase/firestore/lite';
-import { firebaseAuth, firebaseDB } from '../../firebase/config';
+import { firebaseDB } from '../../firebase/config';
+import { addNewNote, setActiveNote } from './journalSlice';
 
 export const startNewNote = () => {
     return async ( dispatch, getState ) => {
 
         const { uid } = getState().auth;
 
-        const newDoc = doc( collection( firebaseDB, `${ uid }/journal/notes` ) );
-        await setDoc( newDoc, { title: '', body: '', date: new Date().getTime() } );
+        const newNote = { title: '', body: '', date: new Date().getTime() };
 
-        
+        const newDoc = doc( collection( firebaseDB, `${ uid }/journal/notes` ) );
+        await setDoc( newDoc, newNote );
+
+        newNote.id = newDoc.id;
+
+        dispatch( addNewNote( newNote ) );
+        dispatch( setActiveNote( newNote ) );
+
     }
 }

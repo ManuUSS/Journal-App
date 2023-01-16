@@ -12,10 +12,11 @@ export const journalSlice = createSlice({
     },
     reducers: {
         addNewNote: ( state, action ) => {
-
+            state.notes.push( action.payload );
+            state.isSaving = false;
         },
         setActiveNote: ( state, action ) => {
-
+            state.activeNote = action.payload;
         },
         setNotes: ( state, action ) => {
 
