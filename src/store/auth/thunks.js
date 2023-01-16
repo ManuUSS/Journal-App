@@ -33,8 +33,9 @@ export const startLoginWithEmailAndPassword = ({ email, password }) => {
     return async ( dispatch ) => {
 
         dispatch( checkingCredentials() );
+        console.log({ email, password });
         const { ok, displayName, uid, photoURL } = await loginEmailAndPassword({ email, password });
-        if( !ok ) return dispatch( logout({ errorMessage: 'Mensaje de error aquí' }) );
+        if( !ok ) return dispatch( logout({ errorMessage: 'Correo o contraseña incorrectos.' }) );
         dispatch( login({ displayName, uid, photoURL, email }) );
 
     }

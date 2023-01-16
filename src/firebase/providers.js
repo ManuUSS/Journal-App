@@ -71,7 +71,7 @@ export const loginEmailAndPassword = async ({ email, password }) => {
         const { displayName, uid, photoURL } = user;
         return {
             ok: true,
-            displayName, uid, photoURL, email, errorMessage
+            displayName, uid, photoURL, email
         }
 
     } catch ( error ) {
