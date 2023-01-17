@@ -6,7 +6,7 @@ import { SaveOutlined, UploadFileOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 import { ImageGallery } from '../components';
 import { useForm } from '../../hooks';
-import { setActiveNote, startSavingNote } from '../../store/journal';
+import { setActiveNote, startSavingNote, startUploadingFiles } from '../../store/journal';
 
 export const NoteView = () => {
 
@@ -42,7 +42,7 @@ export const NoteView = () => {
 
     const onFileInputChange = ({ target }) => {
         if( target.files === 0 ) return;
-        //dispatch( startUploadingFiles( target.files ) );
+        dispatch( startUploadingFiles( target.files ) );
     }
     
 
@@ -70,7 +70,7 @@ export const NoteView = () => {
                 <IconButton
                     color='primary'
                     disabled={ isSaving }
-                    onClick={ () => fileInputRef.current.click }
+                    onClick={ () => fileInputRef.current.click() }
                 >
                     <UploadFileOutlined />
                 </IconButton>
